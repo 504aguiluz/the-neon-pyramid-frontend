@@ -12,13 +12,16 @@ import Payment from './components/Payment';
 function App() {
   return (
     <div className="App">
-      <LoginRegister />
       <Logo />
       <Nav />
-      <Menu />
-      <Dish />
-      <Order />
-      <Payment />
+
+      <div className="bottom-container">
+        <Menu />
+        <Order />
+      </div>
+      {/* <LoginRegister /> */}
+      {/* <Dish /> */}
+      {/* <Payment /> */}
     </div>
   );
 }

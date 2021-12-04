@@ -6,13 +6,61 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
-  /* color: white; */
+
 }
 
 .component {
   border: 1px solid hotpink;
   background-color: black;
   color: white;
+  font-family: 'Major Mono Display', monospace;
+  /* font-family: 'Noto Sans JP', sans-serif; */
+}
+
+/* .login-register {
+
+} */
+
+.logo {
+  height: 250px;
+  padding: 20px;
+  /* display: flex; */
+  /* align-self: center; */
+  text-align: center;
+}
+
+.nav {
+  height: 20px;
+}
+
+.bottom-container{
+  display: flex;
+}
+
+.menu {
+  padding: 20px;
+  display: flex;
+  flex-grow: 3;
+  flex-shrink: 3;
+  flex-direction: column;
+  /* max-width: 700px; */
+}
+
+
+.menu-items {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.order {
+  padding: 20px;
+  display: flex;
+  flex-basis: auto;
+  flex-grow: 2;
+  flex-direction: column;
+  min-width: 460px;
 }
 
 code {

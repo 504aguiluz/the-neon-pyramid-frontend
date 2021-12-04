@@ -3,7 +3,7 @@ import React from 'react';
 function Logo(props) {
     return (
         <div className="component logo">
-            <h1>LOGO</h1>
+            <h1>AVAVAV--NEON PYRAMID--VAVAVA</h1>
         </div>
     );
 }
