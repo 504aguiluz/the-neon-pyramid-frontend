@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   getDishes = () => {
-    // console.log('hit getDishes')
+    console.log('hit getDishes')
     fetch(baseUrl + '/dishes/', {
       credentials: 'include'
     })
@@ -59,7 +59,6 @@ class App extends Component {
   render(){
 
     // this.getDishes()
-
     return (
       <div className="App">
       <Logo />
