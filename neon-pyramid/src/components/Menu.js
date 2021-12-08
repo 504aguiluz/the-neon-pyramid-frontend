@@ -6,35 +6,7 @@ function Menu(props) {
         <div className="component menu">
             <h1>MENU</h1>
             <div className="menu-items">
-                <h3>DRINKS</h3>
-
-                    {props.dishes.map((dish, i) => {
-                        if(dish.category === 'bev'){
-                            return(
-                                <div key={i}>
-                                    <br/>
-                                    <img className="menu-img bev-img" src={dish.image} alt="beverage pic"/>
-                                    <br/>
-                                    <p>id: {dish.id}</p>
-                                    <b>{dish.title}________€¥{dish.price}</b><br/>
-                                    <br/>
-                                    <small>{dish.description}</small>
-                                    <br/>
-                                    <button 
-                                    className="add-button" 
-                                    id={dish.id}
-                                    onClick={()=>{props.addDishToOrder(dish.id)}}
-                                    >+</button>
-                                    <span>   </span><small>add to order</small>
-                                </div>
-                            )
-                        }
-                    })
-                    }
-                    <br/>
-                    <br/>
                 <h3>APPS</h3>
-                    <br/>
                     {props.dishes.map((dish, i) => {
                         if(dish.category === 'app'){
                             return(
@@ -97,6 +69,34 @@ function Menu(props) {
                         }
                     })
                     }
+                <h3>DRINKS</h3>
+
+                    <br/>
+                    {props.dishes.map((dish, i) => {
+                        if(dish.category === 'bev'){
+                            return(
+                                <div key={i}>
+                                    <br/>
+                                    <img className="menu-img bev-img" src={dish.image} alt="beverage pic"/>
+                                    <br/>
+                                    <p>id: {dish.id}</p>
+                                    <b>{dish.title}________€¥{dish.price}</b><br/>
+                                    <br/>
+                                    <small>{dish.description}</small>
+                                    <br/>
+                                    <button 
+                                    className="add-button" 
+                                    id={dish.id}
+                                    onClick={()=>{props.addDishToOrder(dish.id)}}
+                                    >+</button>
+                                    <span>   </span><small>add to order</small>
+                                </div>
+                            )
+                        }
+                    })
+                    }
+                    <br/>
+                    <br/>
             </div>
         </div>
     );
