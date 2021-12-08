@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Menu(props) {
-    // console.log('props.dishes[0].title: '+ props.dishes[0].title)
+    // console.log('props.dishes[0].id: '+ props.dishes[0].id)
     return (
         <div className="component menu">
             <h1>MENU</h1>
@@ -15,8 +15,17 @@ function Menu(props) {
                                     <br/>
                                     <img className="menu-img bev-img" src={dish.image} alt="beverage pic"/>
                                     <br/>
+                                    <p>id: {dish.id}</p>
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
+                                    <br/>
                                     <small>{dish.description}</small>
+                                    <br/>
+                                    <button 
+                                    className="add-button" 
+                                    id={dish.id}
+                                    onClick={()=>{props.addDishToOrder(dish.id)}}
+                                    >+</button>
+                                    <span>   </span><small>add to order</small>
                                 </div>
                             )
                         }
@@ -33,8 +42,12 @@ function Menu(props) {
                                     <br/>       
                                     <img className="menu-img app-img" src={dish.image} alt="app pic"/>     
                                     <br/>       
+                                    <p>id: {dish.id}</p>
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                         <small>{dish.description}</small>
+                                    <br/>
+                                    <button className="add-button">+</button>
+                                    <small>add to order</small>
                                 </div>
                             )
                         }
@@ -51,8 +64,12 @@ function Menu(props) {
                                     <br/>       
                                     <img className="menu-img entree-img" src={dish.image} alt="entree pic"/>     
                                     <br/>       
+                                    <p>id: {dish.id}</p>
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                     <small>{dish.description}</small>
+                                    <br/>
+                                    <button className="add-button">+</button>
+                                    <small>add to order</small>
                                 </div>
                             )
                         }
@@ -69,8 +86,12 @@ function Menu(props) {
                                     <br/>       
                                     <img className="menu-img dessert-img" src={dish.image} alt="dessert pic"/>     
                                     <br/>       
+                                    <p>id: {dish.id}</p>
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                     <small>{dish.description}</small>
+                                    <br/>
+                                    <button className="add-button">+</button>
+                                    <small>add to order</small>
                                 </div>
                             )
                         }
