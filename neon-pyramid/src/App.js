@@ -58,7 +58,7 @@ class App extends Component {
   
   render(){
 
-    // this.getDishes()
+    
     return (
       <div className="App">
       <Logo />
