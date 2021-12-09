@@ -5,12 +5,12 @@ function Menu(props) {
     return (
         <div className="component menu">
             <h1>MENU</h1>
-            <div className="menu-items">
+            <div className="all-menu-items">
                 <h3>APPS</h3>
                     {props.dishes.map((dish, i) => {
                         if(dish.category === 'app'){
                             return(
-                                <div key={i}>
+                                <div key={i} className="menu-item">
                                     <br/>       
                                     <img className="menu-img app-img" src={dish.image} alt="app pic"/>     
                                     <br/>       
@@ -32,7 +32,7 @@ function Menu(props) {
                     {props.dishes.map((dish, i) => {
                         if(dish.category === 'entree'){
                             return(
-                                <div key={i}>
+                                <div key={i} className="menu-item">
                                     <br/>       
                                     <img className="menu-img entree-img" src={dish.image} alt="entree pic"/>     
                                     <br/>       
@@ -54,7 +54,7 @@ function Menu(props) {
                     {props.dishes.map((dish, i) => {
                         if(dish.category === 'dessert'){
                             return(
-                                <div key={i}>
+                                <div key={i} className="menu-item">
                                     <br/>       
                                     <img className="menu-img dessert-img" src={dish.image} alt="dessert pic"/>     
                                     <br/>       
@@ -75,7 +75,7 @@ function Menu(props) {
                     {props.dishes.map((dish, i) => {
                         if(dish.category === 'bev'){
                             return(
-                                <div key={i}>
+                                <div key={i} className="menu-item">
                                     <br/>
                                     <img className="menu-img bev-img" src={dish.image} alt="beverage pic"/>
                                     <br/>

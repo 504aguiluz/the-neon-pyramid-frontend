@@ -8,7 +8,7 @@ function Login(props) {
         {props.loginOpen && 
         <div className="component login">
                 <h1>LOGIN</h1> 
-            <form onSubmit={props.login}>
+            <form onSubmit={props.loginUser}>
                 <label htmlFor='name'>username:</label>
                 <br/>
                 <input 
