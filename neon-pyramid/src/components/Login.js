@@ -14,14 +14,16 @@ function Login(props) {
                 <input 
                 className='input'
                 type='text' 
-                id='name' name='username' />
+                id='name' 
+                name='username' />
                 <br/>
                 <label htmlFor='name'>password:</label>
                 <br/>
                 <input 
                 className='input'
                 type='text' 
-                id='name' name='password' />
+                id='name' 
+                name='password' />
                 <br/>
                 <br/>
                 <input 

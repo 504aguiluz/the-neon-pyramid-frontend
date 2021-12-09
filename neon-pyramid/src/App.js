@@ -45,11 +45,12 @@ class App extends Component {
           password: e.target.password.value,
           phone_num: e.target.phone_num.value,
           address: e.target.address.value,
-          payment_info : {
-            cc_num: e.target.payment_info.cc_num.value,
-            cc_exp: e.target.payment_info.cc_exp.value,
-            cc_sec_code: e.target.payment_info.cc_sec_code.value,
-          }
+          cc_num: '',
+          cc_exp: '',
+          cc_sec_code: '',
+          // cc_num: e.target.cc_num.value,
+          // cc_exp: e.target.cc_exp.value,
+          // cc_sec_code: e.target.cc_sec_code.value,
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -74,7 +75,7 @@ class App extends Component {
     }
 
     try {
-      const response = await fetch(baseUrl + 'users/login', {
+      const response = await fetch(baseUrl + '/users/login', {
         method: 'POST',
         body: JSON.stringify(loginBody),
         headers: {
@@ -138,11 +139,11 @@ class App extends Component {
       }
     })
     .then(data => {
-      console.log('data: ' + data)
+      console.log('data: ' + data.data)
       this.setState({
         dishes: data.data
       })
-      console.log('new data: ' + data)
+      console.log('new data: ' + data.data)
     })
   } 
 
@@ -235,7 +236,6 @@ class App extends Component {
     
     return (
       <div className="App">
-      <Logo />
       <Nav 
         toggleRegisterForm={this.toggleRegisterForm}
         registerOpen={this.state.registerOpen}
@@ -244,6 +244,7 @@ class App extends Component {
         toggleOrderForm={this.toggleOrderForm}
         orderOpen={this.state.orderOpen}
       />
+      <Logo />
 
       <Register 
         register={this.register}

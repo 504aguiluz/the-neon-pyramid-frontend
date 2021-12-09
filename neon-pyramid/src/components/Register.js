@@ -22,7 +22,6 @@ function Register(props) {
                 <br/>
                 <input 
                 className='input'
-                placeholder=""    
                 type='text' 
                 id='name' name='password' />
                 <br/>
@@ -51,7 +50,7 @@ function Register(props) {
                 id='name' name='address' />
                 <br/>
                 <br/>
-                <h4>PAYMENT INFO </h4>
+                {/* <h4>PAYMENT INFO </h4>
                 <small>*required</small>
                 <br/>
                 <br/>
@@ -61,7 +60,7 @@ function Register(props) {
                 placeholder="xxxx-xxxx-xxxx-xxxx"    
                 className='input'
                 type='text' 
-                id='name' name='cc_num'/>
+                id='name' name='payment_info.cc_num'/>
                 <br/>
                 <label htmlFor='name'>cc exp:</label>
                 <br/>
@@ -69,7 +68,7 @@ function Register(props) {
                 className='input'
                 placeholder="mm/yyyy"    
                 type='text' 
-                id='name' name='cc_exp'/>
+                id='name' name='payment_info.cc_exp'/>
                 <br/>
                 <label htmlFor='name'>cc sec code:</label>
                 <br/>
@@ -77,9 +76,9 @@ function Register(props) {
                 placeholder="xxx"    
                 className='input'
                 type='text' 
-                id='name' name='cc_sec_code'/>
+                id='name' name='payment_info.cc_sec_code'/>
                 <br/>
-                <br/>
+                <br/> */}
                 <input 
                 className='submit-btn'
                 type='submit' 

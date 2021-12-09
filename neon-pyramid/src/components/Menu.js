@@ -15,6 +15,7 @@ function Menu(props) {
                                     <img className="menu-img app-img" src={dish.image} alt="app pic"/>     
                                     <br/>       
                                     <p>id: {dish.id}</p>
+                                    <p>key: {i}</p>
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                         <small>{dish.description}</small>
                                     <br/>
@@ -37,6 +38,7 @@ function Menu(props) {
                                     <img className="menu-img entree-img" src={dish.image} alt="entree pic"/>     
                                     <br/>       
                                     <p>id: {dish.id}</p>
+                                    <p>key: {i}</p>
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                     <small>{dish.description}</small>
                                     <br/>
@@ -59,6 +61,7 @@ function Menu(props) {
                                     <img className="menu-img dessert-img" src={dish.image} alt="dessert pic"/>     
                                     <br/>       
                                     <p>id: {dish.id}</p>
+                                    <p>key: {i}</p>
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                     <small>{dish.description}</small>
                                     <br/>
@@ -80,6 +83,7 @@ function Menu(props) {
                                     <img className="menu-img bev-img" src={dish.image} alt="beverage pic"/>
                                     <br/>
                                     <p>id: {dish.id}</p>
+                                    <p>key: {i}</p>
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                     <br/>
                                     <small>{dish.description}</small>
