@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
-// import LoginRegister from './components/LoginRegister';
+import Register from './components/Register';
+import Login from './components/Login';
 import Logo from './components/Logo';
 import Nav from './components/Nav';
 import Menu from './components/Menu';
@@ -22,7 +23,10 @@ class App extends Component {
       address: '',
       payment_info: {},
       userLoggedIn: false,
-      modalOpen: false,
+      registerOpen: false,
+      loginOpen: false,
+      orderOpen: false,
+      paymentOpen: false,
       orders: [],
       dishes: [],
       currentOrder: {},
@@ -197,7 +201,30 @@ class App extends Component {
         currentOrder: copyOrders[copyOrders.length -1],
       })
       console.log('current order: ' + this.state.currentOrder)
+  }
 
+  toggleRegisterForm = () => {
+    this.setState({
+      registerOpen: !this.state.registerOpen,
+    }, ()=>console.log('registerOpen after set state: ' + this.state.registerOpen)
+    )
+    console.log('toggleRegisterForm clicked')
+  }
+
+  toggleLoginForm = () => {
+    this.setState({
+      loginOpen: !this.state.loginOpen,
+    }, ()=>console.log('loginOpen after set state: ' + this.state.loginOpen)
+    )
+    console.log('toggleLoginForm clicked')
+  }
+  
+  toggleOrderForm = () => {
+    this.setState({
+      orderOpen: !this.state.orderOpen,
+    }, ()=>console.log('orderOpen after set state: ' + this.state.orderOpen)
+    )
+    console.log('toggleOrderForm clicked')
   }
 
   componentDidMount(){
@@ -205,12 +232,27 @@ class App extends Component {
   }
   
   render(){
-
     
     return (
       <div className="App">
       <Logo />
-      <Nav />
+      <Nav 
+        toggleRegisterForm={this.toggleRegisterForm}
+        registerOpen={this.state.registerOpen}
+        toggleLoginForm={this.toggleLoginForm}
+        loginOpen={this.state.loginOpen}
+        toggleOrderForm={this.toggleOrderForm}
+        orderOpen={this.state.orderOpen}
+      />
+
+      <Register 
+        register={this.register}
+        registerOpen={this.state.registerOpen}
+      />
+      <Login 
+        loginUser={this.loginUser}
+        loginOpen={this.state.loginOpen}
+      />
 
       <div className="bottom-container">
         <Menu 
@@ -218,11 +260,13 @@ class App extends Component {
           newOrder = {this.newOrder}
           addDishToOrder = {this.addDishToOrder}
         />
-        <Order />
+        <Order 
+        orderOpen={this.state.orderOpen}
+        />
       </div>
-      {/* <LoginRegister /> */}
-      {/* <Dish /> */}
-      {/* <Payment /> */}
+        {/* {this.paymentOpen &&  */}
+        {/* <Payment /> */}
+        {/* } */}
     </div>
     );
   }
