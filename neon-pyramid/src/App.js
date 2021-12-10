@@ -119,7 +119,8 @@ class App extends Component {
       console.log(res.status)
       console.log('🧨 logout successful! 🧨')
       this.setState({
-        userLoggedIn: false
+        userLoggedIn: false,
+        orderOpen: false,
       })
     })
     console.log(this.state)
@@ -245,6 +246,8 @@ class App extends Component {
         loginOpen={this.state.loginOpen}
         toggleOrderForm={this.toggleOrderForm}
         orderOpen={this.state.orderOpen}
+        logoutUser={this.logoutUser}
+        userLoggedIn={this.state.userLoggedIn}
       />
       <Logo />
 

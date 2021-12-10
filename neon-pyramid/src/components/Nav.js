@@ -2,17 +2,26 @@ import React from 'react';
 
 function Nav(props) {
     return (
-        <div className="component nav">
-            
-            <span>___________</span>
-            <p onClick ={()=>{props.toggleRegisterForm()}}>+ REGISTER</p>
-            <span>___________</span>
-            <p onClick ={()=>{props.toggleLoginForm()}}>+ LOGIN</p>
-            <span>___________</span>
-            <p onClick ={()=>{props.toggleOrderForm()}}>+ ORDER</p>
-            <span>___________</span>
+        <React.Fragment>
+            <div className="component nav">
+                
+                <p onClick ={()=>{props.toggleRegisterForm()}}>register<span>___________</span></p>
+                {props.userLoggedIn && 
+                <div>
+                    <p onClick ={()=>{props.logoutUser()}}>logout<span>___________</span></p>
+                    
+                </div>
+                }
+                { !props.userLoggedIn && 
+                <div>
+                    <p onClick ={()=>{props.toggleLoginForm()}}>login<span>___________</span></p>
+                </div>
+                }
+                <p onClick ={()=>{props.toggleOrderForm()}}>order</p>
+                
 
-        </div>
+            </div>
+        </React.Fragment>
     );
 }
 
