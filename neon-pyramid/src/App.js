@@ -96,6 +96,7 @@ class App extends Component {
           username: e.target.username.value,
           password: e.target.password.value,
           userLoggedIn: true,
+          loginOpen: false,
           })
       }
     }
@@ -174,6 +175,7 @@ class App extends Component {
           orders: copyOrders,
           currentOrderId: newOrder.id,
           currentOrder: newOrder,
+          orderOpen: true,
         })
       }
     }
