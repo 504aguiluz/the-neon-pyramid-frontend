@@ -27,10 +27,10 @@ class App extends Component {
       loginOpen: false,
       orderOpen: false,
       paymentOpen: false,
-      orders: [],
+      // orders: [],
       dishes: [],
-      currentOrder: {},
-      currentOrderId: null,
+      // currentOrder: {},
+      orderedDishes: [],
     }
   }
 
@@ -98,6 +98,9 @@ class App extends Component {
           userLoggedIn: true,
           loginOpen: false,
           })
+        this.newOrder()
+        console.log('current order: ' + JSON.stringify(this.state.currentOrder.data))
+        console.log('current order id: ' + JSON.stringify(this.state.currentOrder.data.id))
       }
     }
     catch(err){
@@ -174,10 +177,12 @@ class App extends Component {
         copyOrders.push(newOrder)
         this.setState({
           orders: copyOrders,
-          currentOrderId: newOrder.id,
           currentOrder: newOrder,
           orderOpen: true,
         })
+        console.log('newOrder: ' + JSON.stringify(newOrder))
+        console.log('newOrderID: ' + JSON.stringify(newOrder.data.id))
+        console.log('currentOrder: ' + this.state.currentOrder)
       }
     }
     catch(err){
@@ -188,23 +193,13 @@ class App extends Component {
   }
 
   addDishToOrder =(dish_id)=> {
-    console.log('dish id: ' + dish_id,'order id :' + this.currentOrderId)
     
-    if(this.currentOrderId === undefined){
-      this.newOrder()
-      console.log('order created: ' + this.state.currentOrder)
-    } else {
-      console.log('existing order: ' + this.state.currentOrder)
-    }
-      const copyOrders = [...this.state.orders]
-      const dishToAdd = this.state.dishes.find(dish => dish.dish_id === dish_id)
-      console.log(dishToAdd)
-      copyOrders.push(dishToAdd)
-      this.setState({
-        orders: copyOrders,
-        currentOrder: copyOrders[copyOrders.length -1],
-      })
-      console.log('current order: ' + this.state.currentOrder)
+    // find the dish by id
+ 
+    // push to orderedDishes[]
+ 
+    // total prices dynamically
+
   }
 
   toggleRegisterForm = () => {
@@ -263,11 +258,12 @@ class App extends Component {
       <div className="bottom-container">
         <Menu 
           dishes = {this.state.dishes}
-          newOrder = {this.newOrder}
+          currentOrder = {this.state.currentOrder}
           addDishToOrder = {this.addDishToOrder}
         />
         <Order 
         orderOpen={this.state.orderOpen}
+        currentOrder={this.state.currentOrder}
         />
       </div>
         {/* {this.paymentOpen &&  */}
