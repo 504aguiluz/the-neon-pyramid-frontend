@@ -33,7 +33,7 @@ function Menu(props) {
                     }
                     <br/>
                     <br/>
-                <h3>ENTREÉS</h3>
+                <h3>ENTRÉES</h3>
                     <br/>
                     {props.dishes.map((dish, i) => {
                         if(dish.category === 'entree'){
