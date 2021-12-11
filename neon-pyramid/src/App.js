@@ -27,10 +27,11 @@ class App extends Component {
       loginOpen: false,
       orderOpen: false,
       paymentOpen: false,
-      // orders: [],
+      orders: [],
       dishes: [],
-      // currentOrder: {},
+      currentOrderId: null,
       orderedDishes: [],
+      orderedDishesTotal: null,
     }
   }
 
@@ -144,11 +145,11 @@ class App extends Component {
       }
     })
     .then(data => {
-      console.log('data: ' + data.data)
+      // console.log('data: ' + JSON.stringify(data.data))
       this.setState({
         dishes: data.data
       })
-      console.log('new data: ' + data.data)
+      console.log('new data: ' + JSON.stringify(data.data))
     })
   } 
 
@@ -177,12 +178,11 @@ class App extends Component {
         copyOrders.push(newOrder)
         this.setState({
           orders: copyOrders,
-          currentOrder: newOrder,
+          currentOrderId: newOrder.data.id,
           orderOpen: true,
         })
         console.log('newOrder: ' + JSON.stringify(newOrder))
         console.log('newOrderID: ' + JSON.stringify(newOrder.data.id))
-        console.log('currentOrder: ' + this.state.currentOrder)
       }
     }
     catch(err){
@@ -192,12 +192,41 @@ class App extends Component {
 
   }
 
-  addDishToOrder =(dish_id)=> {
-    
+  addDishToOrder =(dish_id, order_id)=> {
     // find the dish by id
- 
-    // push to orderedDishes[]
- 
+    fetch(baseUrl + '/add_dish/' + dish_id + '/' + order_id, {
+      method: 'PUT', 
+    })
+    console.log('dish id: ', dish_id, 'order id: ', order_id)
+    .then(res => {
+      if(res.status === 200) {
+        console.log(`You got found dish ${dish_id}!`)
+        console.log(res.json())
+        return res.json()
+      } else {
+        console.log('No dish fetched...')
+        return []
+      }
+    })
+    .then(data => {
+      console.log(data)
+      const copyOrderedDishes = [...this.state.orderedDishes]
+      copyOrderedDishes.push(data)
+      this.setState ({
+        orderedDishes: copyOrderedDishes,
+        // orderedDishesTotal: ,
+      })
+    })
+      // push to orderedDishes[]
+    //   const copyOrderedDishes = [...this.state.orderedDishes]
+    //   copyOrderedDishes.push()
+    // .then(data => {
+    //   this.setState({
+    //     orderedDishes: '',
+    //     orderedDishesTotal: null,
+    //   })
+        
+    // })
     // total prices dynamically
 
   }
@@ -258,7 +287,7 @@ class App extends Component {
       <div className="bottom-container">
         <Menu 
           dishes = {this.state.dishes}
-          currentOrder = {this.state.currentOrder}
+          currentOrderId = {this.state.currentOrderId}
           addDishToOrder = {this.addDishToOrder}
         />
         <Order 
