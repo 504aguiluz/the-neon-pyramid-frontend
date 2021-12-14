@@ -22,7 +22,7 @@ function Menu(props) {
                                     <button 
                                     className="add-button"
                                     id={dish.id}
-                                    onClick={()=>{props.addDishToOrder(dish.id, props.currentOrderId)}}
+                                    onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}
                                     // onClick={()=>{console.log(props.currentOrderId)}}
                                     >+</button>
                                     <small>add to order</small>
@@ -50,7 +50,7 @@ function Menu(props) {
                                     <button 
                                     className="add-button"
                                     id={dish.id}
-                                    onClick={()=>{props.addDishToOrder(dish.id, props.currentOrderId)}}
+                                    onClick={()=>{props.addDishToOrder( props.currentOrderId, dish.id)}}
                                     >+</button>
                                     <small>add to order</small>
                                 </div>
@@ -77,7 +77,7 @@ function Menu(props) {
                                     <button 
                                     className="add-button"
                                     id={dish.id}
-                                    onClick={()=>{props.addDishToOrder(dish.id, props.currentOrderId)}}
+                                    onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}
                                     >+</button>
                                     <small>add to order</small>
                                 </div>
@@ -104,7 +104,7 @@ function Menu(props) {
                                     <button 
                                     className="add-button" 
                                     id={dish.id}
-                                    onClick={()=>{props.addDishToOrder(dish.id, props.currentOrderId)}}
+                                    onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}
                                     >+</button>
                                     <span>   </span><small>add to order</small>
                                 </div>

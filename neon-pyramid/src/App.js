@@ -33,7 +33,6 @@ class App extends Component {
       orderedDishes: [],
       orderedDishesTotal: 0,
       orderEmpty: true,
-      // orderedDishQty: 0,
     }
   }
 
@@ -150,7 +149,13 @@ class App extends Component {
       })
       console.log('new data: ' + JSON.stringify(data.data))
     })
-  } 
+  }
+  
+  getOrderedDishesByOrderId = (order_id) => {
+    console.log(('hit getOrderedDishesByOrderId'))
+    console.log('order id: ' + order_id)
+
+  }
 
   newOrder = async () => {
     console.log('hit newOrder')
@@ -191,22 +196,24 @@ class App extends Component {
 
   }
 
-  changeDishQty = (dish_id, amount) => {
-    console.log('dish id:' + dish_id)
-    fetch(baseUrl + '/dishes/' + dish_id, {
-      method: 'PUT',
-    })
-    .then(res => {
+  // changeDishQty = (ordered_dish_id, amount) => {
+  //   console.log('ordered_dish id:' + ordered_dish_id)
+  //   fetch(baseUrl + '/ordered_dishes/' + ordered_dish_id, {
+  //     method: 'PUT',
+  //     // 
+  //   })
+  //   .then(res => {
 
-    })
-  }
 
-  addDishToOrder =(dish_id, order_id)=> {
+  //   })
+  // }
+
+  addDishToOrder =(order_id, dish_id)=> {
     // hit PUT route with IDs 
-    console.log('dish id:',dish_id,' order id:',order_id)
-    console.log('orderedDishes: ' + this.state.orderedDishes)
-    fetch(baseUrl + '/orders/add_dish/' + dish_id + '/' + order_id, {
-      method: 'PUT',
+    console.log( 'order id:',order_id, 'dish id:',dish_id)
+    fetch(baseUrl + '/ordered_dishes/' + order_id + '/' + dish_id + '/', {
+      method: 'POST',
+      credentials: 'include',
     })
     .then(res => {
       if(res.status === 200){
@@ -220,10 +227,12 @@ class App extends Component {
     // return data.data
     .then(data => {
       console.log(data)
+      const copyOrderedDishes = [...this.state.orderedDishes, data.data]
       this.setState({
-        orderedDishes: data.data,
+        orderedDishes: copyOrderedDishes,
       })
     })
+    console.log('orderedDishes: ' + this.state.orderedDishes)
   }
 
   toggleRegisterForm = () => {
