@@ -14,18 +14,18 @@ function Menu(props) {
                                     <br/>       
                                     <img className="menu-img app-img" src={dish.image} alt="app pic"/>     
                                     <br/>       
-                                    <p>id: {dish.id}</p>
-                                    <p>key: {i}</p>
+                                    {/* <p>id: {dish.id}</p> */}
+                                    {/* <p>key: {i}</p> */}
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
-                                        <small>{dish.description}</small>
+                                        <p>{dish.description}</p>
                                     <br/>
                                     <button 
-                                    className="add-button"
+                                    className="add-btn all-btns"
                                     id={dish.id}
                                     onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}
                                     // onClick={()=>{console.log(props.currentOrderId)}}
                                     >+</button>
-                                    <small>add to order</small>
+                                    <small>[add to order]</small>
                                     <br/>       
                                     <br/>       
                                 </div>
@@ -44,13 +44,13 @@ function Menu(props) {
                                     <br/>       
                                     <img className="menu-img entree-img" src={dish.image} alt="entree pic"/>     
                                     <br/>       
-                                    <p>id: {dish.id}</p>
-                                    <p>key: {i}</p>
+                                    {/* <p>id: {dish.id}</p> */}
+                                    {/* <p>key: {i}</p> */}
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                     <small>{dish.description}</small>
                                     <br/>
                                     <button 
-                                    className="add-button"
+                                    className="add-btn all-btns"
                                     id={dish.id}
                                     onClick={()=>{props.addDishToOrder( props.currentOrderId, dish.id)}}
                                     >+</button>
@@ -71,13 +71,13 @@ function Menu(props) {
                                     <br/>       
                                     <img className="menu-img dessert-img" src={dish.image} alt="dessert pic"/>     
                                     <br/>       
-                                    <p>id: {dish.id}</p>
-                                    <p>key: {i}</p>
+                                    {/* <p>id: {dish.id}</p> */}
+                                    {/* <p>key: {i}</p> */}
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                     <small>{dish.description}</small>
                                     <br/>
                                     <button 
-                                    className="add-button"
+                                    className="add-btn all-btns"
                                     id={dish.id}
                                     onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}
                                     >+</button>
@@ -97,14 +97,14 @@ function Menu(props) {
                                     <br/>
                                     <img className="menu-img bev-img" src={dish.image} alt="beverage pic"/>
                                     <br/>
-                                    <p>id: {dish.id}</p>
-                                    <p>key: {i}</p>
+                                    {/* <p>id: {dish.id}</p> */}
+                                    {/* <p>key: {i}</p> */}
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                     <br/>
                                     <small>{dish.description}</small>
                                     <br/>
                                     <button 
-                                    className="add-button" 
+                                    className="add-btn all-btns" 
                                     id={dish.id}
                                     onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}
                                     >+</button>

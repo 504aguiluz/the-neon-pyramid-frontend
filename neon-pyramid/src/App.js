@@ -5,7 +5,6 @@ import Login from './components/Login';
 import Logo from './components/Logo';
 import Nav from './components/Nav';
 import Menu from './components/Menu';
-// import Dish from './components/Dish';
 import Order from './components/Order';
 // import Payment from './components/Payment';
 

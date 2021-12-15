@@ -1,3 +1,16 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #050801;
+  font-weight: bold;
+} */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -17,9 +30,13 @@ body {
   /* font-family: 'Noto Sans JP', sans-serif; */
 }
 
-/* .login-register {
+/* .order {
 
 } */
+
+.menu-img {
+  margin: 20px;
+}
 
 .logo {
   height: 250px;
@@ -54,13 +71,18 @@ body {
 }
 
 .menu-item {
-  /* border: 1px solid rgba(255, 105, 180, 0.338); */
-  transition: background-color .5s;
+  border: 1px solid rgba(255, 105, 180, 0.338);
+  transition: .7s;
+
   /* display: flex; */
 }
 
 .menu-item:hover {
-  background: rgba(255, 110, 202, 0.605);
+  background: rgba(255, 110, 202, 0.242);
+  border: 1px solid hotpink;
+  border-radius: 20px;
+  -webkit-transition: .7s;
+  transition: .7s;
 }
 
 .menu-img {
@@ -87,6 +109,31 @@ body {
   flex-direction: column;
   min-width: 560px;
 }
+
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap'); */
+
+.all-btns {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  background: black;
+  color: #f403c0;
+  transition: 0.5s;
+  letter-spacing: 4px;
+  
+}
+.all-btns:hover{
+  background: #03e9f4;
+  color: #050801;
+  box-shadow: 0 0 5px #f403c0,
+  0 0 25px #f403c0,
+  0 0 50px #f403c0,
+  0 0 200px #f403c0;
+  -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+  margin: 15px;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
