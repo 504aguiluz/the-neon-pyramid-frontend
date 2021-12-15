@@ -22,7 +22,7 @@ function Order(props) {
                         return(
                             <div key={i}
                             className='ordered-dish'>
-                                <br/>  
+                                {/* <br/>   */}
                                 <small>({orderedDish.qtyOrdered})</small> 
                                 <b>{orderedDish.dish.title}</b>
                                 <small className='ordered-dish-price'>€¥{orderedDish.dish.price}</small>
@@ -40,7 +40,7 @@ function Order(props) {
                         return(
                             <div key={i}
                             className='ordered-dish'>
-                                <br/>  
+                                {/* <br/>   */}
                                 <small>({orderedDish.qtyOrdered})</small>
                                 <b>{orderedDish.dish.title}</b>
                                 <small className='ordered-dish-price'>€¥{orderedDish.dish.price}</small>
@@ -58,7 +58,7 @@ function Order(props) {
                         return(
                             <div key={i}
                             className='ordered-dish'>
-                                <br/>
+                                {/* <br/> */}
                                 <small>({orderedDish.qtyOrdered})</small>
                                 <b>{orderedDish.dish.title}</b>
                                 <small className='ordered-dish-price'>€¥{orderedDish.dish.price}</small>
@@ -76,7 +76,7 @@ function Order(props) {
                         return(
                             <div key={i}
                             className='ordered-dish'>
-                                <br/>  
+                                {/* <br/>   */}
                                 <small>({orderedDish.qtyOrdered})</small>
                                 <b>{orderedDish.dish.title}</b>
                                 <small className='ordered-dish-price'>€¥{orderedDish.dish.price}</small>
@@ -88,7 +88,15 @@ function Order(props) {
                 )}
                 <br/>
                 <br/>
+                <h4>total: €¥ {props.currentOrderTotal}</h4>
 
+                <button
+                className='checkout-btn'
+                id={props.currentOrderId}
+                onClick={()=>{props.checkout()}}
+                >
+                checkout
+                </button>
 
             </div>
         </div>

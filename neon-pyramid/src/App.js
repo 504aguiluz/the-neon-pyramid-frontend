@@ -316,6 +316,10 @@ class App extends Component {
     console.log('toggleOrderForm clicked')
   }
 
+  checkout = () => {
+    console.log('hit checkout button!')
+  }
+
   componentDidMount(){
     this.getDishes()
   }
@@ -358,6 +362,7 @@ class App extends Component {
           currentOrderId={this.state.currentOrderId}
           orders={this.state.orders}
           currentOrderTotal={this.state.currentOrderTotal}
+          checkout={this.checkout}
         />
       </div>
         {/* {this.paymentOpen &&  */}
