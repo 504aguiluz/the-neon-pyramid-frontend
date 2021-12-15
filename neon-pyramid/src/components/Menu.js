@@ -10,22 +10,17 @@ function Menu(props) {
                     {props.dishes.map((dish, i) => {
                         if(dish.category === 'app'){
                             return(
-                                <div key={i} className="menu-item">
+                                <div key={i} className="menu-item" onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}>
                                     <br/>       
                                     <img className="menu-img app-img" src={dish.image} alt="app pic"/>     
                                     <br/>       
+                                    {/* <div id="sample" onclick="this.style.width = '200px';"></div> */}
                                     {/* <p>id: {dish.id}</p> */}
                                     {/* <p>key: {i}</p> */}
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                         <p>{dish.description}</p>
                                     <br/>
-                                    <button 
-                                    className="add-btn all-btns"
-                                    id={dish.id}
-                                    onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}
-                                    // onClick={()=>{console.log(props.currentOrderId)}}
-                                    >+</button>
-                                    <small>[add to order]</small>
+                                    <small>[click to add]</small>
                                     <br/>       
                                     <br/>       
                                 </div>
