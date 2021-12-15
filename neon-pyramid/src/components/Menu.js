@@ -26,6 +26,8 @@ function Menu(props) {
                                     // onClick={()=>{console.log(props.currentOrderId)}}
                                     >+</button>
                                     <small>add to order</small>
+                                    <br/>       
+                                    <br/>       
                                 </div>
                             )
                         }

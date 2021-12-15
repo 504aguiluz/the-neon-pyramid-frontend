@@ -31,8 +31,9 @@ class App extends Component {
       dishes: [],
       currentOrderId: null,
       orderedDishes: [],
-      orderedDishesTotal: 0,
       orderEmpty: true,
+      currentOrderedDishId: null,
+      currentOrderTotal: 0,
     }
   }
 
@@ -68,9 +69,10 @@ class App extends Component {
       console.log('😖 register failed 😖')
     }
   }
-
+  
   loginUser = async (e) => {
     e.preventDefault()
+    this.getOrders()
     const loginBody = {
       username: e.target.username.value,
       password: e.target.password.value,
@@ -91,7 +93,6 @@ class App extends Component {
 
       if(response.status === 200){
         this.getDishes()
-        // this.getOrders()
         console.log('🥳 login successful! 🥳')
         this.setState({
           // need to populate the rest of state for users
@@ -147,14 +148,30 @@ class App extends Component {
       this.setState({
         dishes: data.data
       })
-      console.log('new data: ' + JSON.stringify(data.data))
+      // console.log('new data: ' + JSON.stringify(data.data))
     })
   }
-  
-  getOrderedDishesByOrderId = (order_id) => {
-    console.log(('hit getOrderedDishesByOrderId'))
-    console.log('order id: ' + order_id)
 
+  getOrders = () => {
+    console.log('hit getOrders')
+    fetch(baseUrl + '/orders/', {
+      credentials: 'include'
+    })
+    .then (res => {
+      if(res.status === 200) {
+        console.log('📝 fetch index orders successful! 📝')
+        return res.json()
+      } else {
+        console.log('fetch index orders failed...💣')
+        return[]
+      }
+    })
+    .then(data => {
+      this.setState({
+        orders: data.data
+      })
+      console.log('new data: ' + JSON.stringify(data.data))
+    })
   }
 
   newOrder = async () => {
@@ -178,6 +195,7 @@ class App extends Component {
         console.log('new order created!')
         const newOrder = await response.json()
         console.log('new order :' + newOrder)
+        this.getOrders()
         const copyOrders = [...this.state.orders]
         copyOrders.push(newOrder)
         this.setState({
@@ -193,23 +211,22 @@ class App extends Component {
       console.log('Error -> ', err)
       console.log('order not created...')
     }
+    
+  }
+
+  sumOrderedDishPrices = () => {
+    
+  const dishes = this.state.orderedDishes
+  const total = dishes.reduce((total, obj) => obj.dish.price + total, 0)
+  console.log(total)
+
+  this.setState({
+    currentOrderTotal: total,
+  })
 
   }
 
-  // changeDishQty = (ordered_dish_id, amount) => {
-  //   console.log('ordered_dish id:' + ordered_dish_id)
-  //   fetch(baseUrl + '/ordered_dishes/' + ordered_dish_id, {
-  //     method: 'PUT',
-  //     // 
-  //   })
-  //   .then(res => {
-
-
-  //   })
-  // }
-
   addDishToOrder =(order_id, dish_id)=> {
-    // hit PUT route with IDs 
     console.log( 'order id:',order_id, 'dish id:',dish_id)
     fetch(baseUrl + '/ordered_dishes/' + order_id + '/' + dish_id + '/', {
       method: 'POST',
@@ -224,16 +241,56 @@ class App extends Component {
         return []
       }
     })
-    // return data.data
     .then(data => {
       console.log(data)
       const copyOrderedDishes = [...this.state.orderedDishes, data.data]
+      console.log(copyOrderedDishes[copyOrderedDishes.length-1])
+
+
       this.setState({
+        currentOrderId: order_id,
         orderedDishes: copyOrderedDishes,
+        currentOrderedDishId: copyOrderedDishes[copyOrderedDishes.length-1].id,
+        currentOrderTotal: null,
+      })
+      // this.updateOrderedDish(order_id, dish_id, this.state.currentOrderedDishId)
+    })
+    .then(()=>{
+      this.sumOrderedDishPrices()
+    })
+  }
+
+
+  updateOrderedDish = (order_id, dish_id, ordered_dish_id) => {
+    console.log(`order id: ${order_id}, dish id: ${dish_id}, ordered_dish_id: ${ordered_dish_id}` )
+
+    fetch(baseUrl + '/ordered_dishes/' + order_id + '/' + dish_id + '/' + ordered_dish_id, { 
+      method: 'PUT',
+      credentials: 'include'
+    })
+
+    .then(res => {
+      if(res.status === 200){
+        console.log('ordered dish updated!')
+        return res.json()
+      } else {
+        console.log('dish was not updated...')
+        return []
+      }
+    })
+
+    .then(data => {
+      const updatedOrderedDish = data.data
+      console.log(updatedOrderedDish)
+      const findIndex = this.state.orderedDishes.findIndex(orderedDish => orderedDish.id === updatedOrderedDish.id)
+      const copyOrderedDishes = [...this.state.orderedDishes]
+      copyOrderedDishes[findIndex] = updatedOrderedDish
+      this.setState({
+        orderedDishes: copyOrderedDishes
       })
     })
-    console.log('orderedDishes: ' + this.state.orderedDishes)
-  }
+    
+        }
 
   toggleRegisterForm = () => {
     this.setState({
@@ -295,11 +352,12 @@ class App extends Component {
           addDishToOrder = {this.addDishToOrder}
         />
         <Order 
-        orderOpen={this.state.orderOpen}
-        currentOrder={this.state.currentOrder}
-        orderedDishes={this.state.orderedDishes}
-        orderedDishQty={this.state.orderedDishQty}
-        // orderedDishesTotal={this.state.orderedDishesTotal}
+          orderOpen={this.state.orderOpen}
+          orderedDishes={this.state.orderedDishes}
+          orderedDishQty={this.state.orderedDishQty}
+          currentOrderId={this.state.currentOrderId}
+          orders={this.state.orders}
+          currentOrderTotal={this.state.currentOrderTotal}
         />
       </div>
         {/* {this.paymentOpen &&  */}

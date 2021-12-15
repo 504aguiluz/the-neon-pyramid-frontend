@@ -1,14 +1,20 @@
 import React from 'react';
 
 function Order(props) {
-    console.log(`props: ${props}`)
+    console.log(`props: ${JSON.stringify(props.orders[props.currentOrderId-1])}`)
+    console.log(`current_order_id: ${props.currentOrderId}`)
     return (
         <React.Fragment>
         {props.orderOpen &&
 
         <div className="component order">
-        
-            <h1>ORDER</h1>
+            
+            <div>
+                <h1>ORDER</h1>
+                <em>total: €¥ {props.currentOrderTotal}</em>
+            </div>
+            <br/>
+            <br/>
             <div className='all-ordered-dishes'>
             <h4>apps</h4>
                 {props.orderedDishes.map((orderedDish, i) => {
@@ -82,6 +88,7 @@ function Order(props) {
                 )}
                 <br/>
                 <br/>
+
 
             </div>
         </div>
