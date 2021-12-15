@@ -222,6 +222,17 @@ class App extends Component {
   this.setState({
     currentOrderTotal: total,
   })
+}
+
+  subOrderedDishPrices = (id) => {
+    const findIndex = this.state.orderedDishes.findIndex(orderedDish => orderedDish.id === id)
+    const orderedDish = this.state.orderedDishes[findIndex]
+    console.log(`orderedDish.dish.price: ${JSON.stringify(orderedDish.dish.price)}`)
+    const currentTotal = this.state.currentOrderTotal
+    const newTotal = currentTotal - orderedDish.dish.price
+    this.setState({
+      currentOrderTotal: newTotal,
+    })
 
   }
 
@@ -288,8 +299,24 @@ class App extends Component {
         orderedDishes: copyOrderedDishes
       })
     })
-    
-        }
+  }
+
+  deleteOrderedDish = (id) => {
+    console.log(id)
+    this.subOrderedDishPrices(id)
+    fetch(baseUrl + '/ordered_dishes/' + id + '/', {
+      method: 'DELETE',
+    })
+    .then(res => {
+      console.log(res)
+      const findIndex = this.state.orderedDishes.findIndex(orderedDish => orderedDish.id === id)
+      const copyOrderedDishes = [...this.state.orderedDishes]
+      copyOrderedDishes.splice(findIndex, 1)
+      this.setState({
+        orderedDishes: copyOrderedDishes,
+      })
+    })
+  }
 
   toggleRegisterForm = () => {
     this.setState({
@@ -361,6 +388,7 @@ class App extends Component {
           currentOrderId={this.state.currentOrderId}
           orders={this.state.orders}
           currentOrderTotal={this.state.currentOrderTotal}
+          deletedOrderedDish={this.deleteOrderedDish}
           checkout={this.checkout}
         />
       </div>

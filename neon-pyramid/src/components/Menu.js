@@ -14,9 +14,6 @@ function Menu(props) {
                                     <br/>       
                                     <img className="menu-img app-img" src={dish.image} alt="app pic"/>     
                                     <br/>       
-                                    {/* <div id="sample" onclick="this.style.width = '200px';"></div> */}
-                                    {/* <p>id: {dish.id}</p> */}
-                                    {/* <p>key: {i}</p> */}
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                         <p>{dish.description}</p>
                                     <br/>
@@ -44,12 +41,9 @@ function Menu(props) {
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                     <small>{dish.description}</small>
                                     <br/>
-                                    <button 
-                                    className="add-btn all-btns"
-                                    id={dish.id}
-                                    onClick={()=>{props.addDishToOrder( props.currentOrderId, dish.id)}}
-                                    >+</button>
-                                    <small>add to order</small>
+                                    <small>[click to add]</small>
+                                    <br/>       
+                                    <br/> 
                                 </div>
                             )
                         }
@@ -71,12 +65,9 @@ function Menu(props) {
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                     <small>{dish.description}</small>
                                     <br/>
-                                    <button 
-                                    className="add-btn all-btns"
-                                    id={dish.id}
-                                    onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}
-                                    >+</button>
-                                    <small>add to order</small>
+                                    <small>[click to add]</small>
+                                    <br/>       
+                                    <br/> 
                                 </div>
                             )
                         }
@@ -98,12 +89,9 @@ function Menu(props) {
                                     <br/>
                                     <small>{dish.description}</small>
                                     <br/>
-                                    <button 
-                                    className="add-btn all-btns" 
-                                    id={dish.id}
-                                    onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}
-                                    >+</button>
-                                    <span>   </span><small>add to order</small>
+                                    <small>[click to add]</small>
+                                    <br/>       
+                                    <br/> 
                                 </div>
                             )
                         }

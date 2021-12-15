@@ -22,11 +22,10 @@ function Order(props) {
                         return(
                             <div key={i}
                             className='ordered-dish'>
-                                {/* <br/>   */}
                                 <button
                                 className='del-btn all-btns'
                                 id={orderedDish.id}
-                                onClick={()=>{props.delDishFromOrder()}}
+                                onClick={()=>{props.deletedOrderedDish(orderedDish.id)}}
                                 ><b>-</b></button>
                                 <small>({orderedDish.qtyOrdered})</small> 
                                 <b>{orderedDish.dish.title}</b>
@@ -45,11 +44,10 @@ function Order(props) {
                         return(
                             <div key={i}
                             className='ordered-dish'>
-                                {/* <br/>   */}
                                 <button
                                 className='del-btn all-btns'
                                 id={orderedDish.id}
-                                onClick={()=>{props.delDishFromOrder()}}
+                                onClick={()=>{props.deletedOrderedDish(orderedDish.id)}}
                                 ><b>-</b></button>
                                 <small>({orderedDish.qtyOrdered})</small>
                                 <b>{orderedDish.dish.title}</b>
@@ -68,11 +66,10 @@ function Order(props) {
                         return(
                             <div key={i}
                             className='ordered-dish'>
-                                {/* <br/> */}
                                 <button
                                 className='del-btn all-btns'
                                 id={orderedDish.id}
-                                onClick={()=>{props.delDishFromOrder()}}
+                                onClick={()=>{props.deletedOrderedDish(orderedDish.id)}}
                                 ><b>-</b></button>
                                 <small>({orderedDish.qtyOrdered})</small>
                                 <b>{orderedDish.dish.title}</b>
@@ -94,7 +91,7 @@ function Order(props) {
                                 <button
                                 className='del-btn all-btns'
                                 id={orderedDish.id}
-                                onClick={()=>{props.delDishFromOrder()}}
+                                onClick={()=>{props.deletedOrderedDish(orderedDish.id)}}
                                 ><b>-</b></button>
                                 <small>({orderedDish.qtyOrdered})</small>
                                 <b>{orderedDish.dish.title}</b>
