@@ -50,9 +50,6 @@ class App extends Component {
           cc_num: '',
           cc_exp: '',
           cc_sec_code: '',
-          // cc_num: e.target.cc_num.value,
-          // cc_exp: e.target.cc_exp.value,
-          // cc_sec_code: e.target.cc_sec_code.value,
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -60,7 +57,6 @@ class App extends Component {
       })
       if (response.status === 200) {
         this.getDishes()
-        // this.getOrders()
       }
     }
     catch(err) {
