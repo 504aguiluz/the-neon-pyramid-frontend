@@ -17,7 +17,7 @@ function Menu(props) {
                                     <b>{dish.title}________€¥{dish.price}</b><br/>
                                         <p>{dish.description}</p>
                                     <br/>
-                                    <small>[click to add]</small>
+                                    <small className='menu-text-appear'>[click to add]</small>
                                     <br/>       
                                     <br/>       
                                 </div>
@@ -32,7 +32,7 @@ function Menu(props) {
                     {props.dishes.map((dish, i) => {
                         if(dish.category === 'entree'){
                             return(
-                                <div key={i} className="menu-item">
+                                <div key={i} className="menu-item" onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}>
                                     <br/>       
                                     <img className="menu-img entree-img" src={dish.image} alt="entree pic"/>     
                                     <br/>       
@@ -56,7 +56,7 @@ function Menu(props) {
                     {props.dishes.map((dish, i) => {
                         if(dish.category === 'dessert'){
                             return(
-                                <div key={i} className="menu-item">
+                                <div key={i} className="menu-item" onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}>
                                     <br/>       
                                     <img className="menu-img dessert-img" src={dish.image} alt="dessert pic"/>     
                                     <br/>       
@@ -79,7 +79,7 @@ function Menu(props) {
                     {props.dishes.map((dish, i) => {
                         if(dish.category === 'bev'){
                             return(
-                                <div key={i} className="menu-item">
+                                <div key={i} className="menu-item" onClick={()=>{props.addDishToOrder(props.currentOrderId, dish.id)}}>
                                     <br/>
                                     <img className="menu-img bev-img" src={dish.image} alt="beverage pic"/>
                                     <br/>
