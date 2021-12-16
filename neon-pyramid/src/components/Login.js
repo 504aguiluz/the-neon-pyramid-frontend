@@ -27,11 +27,18 @@ function Login(props) {
                 <br/>
                 <br/>
                 <input 
-                className='submit-btn'
+                className='submit-btn all-btns'
                 type='submit' value='login' />
                 <br/>
                 <br/>
             </form>
+            <button
+                className='open-register-btn all-btns'
+                id={props.currentOrderId}
+                onClick ={()=>{props.toggleRegisterForm()}}
+                >
+                register
+                </button>
         </div>
                 }
         </React.Fragment>

@@ -10,7 +10,9 @@ function Order(props) {
         <div className="component order">
             
             <div>
-                <h1>ORDER</h1>
+                <h1>ORDER:</h1>
+                <p>{props.currentOrderId}</p>
+                <p>{props.username}</p>
                 <em>total: €¥ {props.currentOrderTotal}</em>
             </div>
             <br/>

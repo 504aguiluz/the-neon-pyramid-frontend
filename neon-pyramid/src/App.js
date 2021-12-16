@@ -1,5 +1,6 @@
 import './App.css';
 import React, { Component } from 'react';
+import { Alert } from 'react-alert';
 import Register from './components/Register';
 import Login from './components/Login';
 import Logo from './components/Logo';
@@ -35,6 +36,7 @@ class App extends Component {
       currentOrderTotal: 0,
     }
   }
+  
 
   register = async (e) => {
     e.preventDefault()
@@ -55,8 +57,18 @@ class App extends Component {
           'Content-Type': 'application/json'
         }
       })
-      if (response.status === 200) {
+
+      if (response.status === 201) {
         this.getDishes()
+        console.log('🥳 register successful! 🥳')
+        this.setState({
+          registerOpen: false,
+          loginOpen: true,
+          })
+          // this.toggleLoginForm()
+          // this.toggleRegisterForm()
+      } else {
+
       }
     }
     catch(err) {
@@ -67,12 +79,11 @@ class App extends Component {
   
   loginUser = async (e) => {
     e.preventDefault()
-    this.getOrders()
     const loginBody = {
       username: e.target.username.value,
       password: e.target.password.value,
     }
-
+    
     try {
       const response = await fetch(baseUrl + '/users/login', {
         method: 'POST',
@@ -82,11 +93,12 @@ class App extends Component {
         },
         credentials: 'include'
       })
-
+      
       console.log(response)
       console.log('BODY: ', response.body)
-
+      
       if(response.status === 200){
+        this.getOrders()
         this.getDishes()
         console.log('🥳 login successful! 🥳')
         this.setState({
@@ -97,9 +109,13 @@ class App extends Component {
           loginOpen: false,
           })
         this.newOrder()
+      } else {
+        alert('☠️ Incorrect username/login... ☠️ Please try again or register before logging in.')
+        console.log('😖 login failed 😖')
       }
     }
     catch(err){
+      alert('login unsuccessful')
       console.log('Error => ', err)
       console.log('😖 login failed 😖')
     }
@@ -234,37 +250,45 @@ class App extends Component {
 
   addDishToOrder =(order_id, dish_id)=> {
     console.log( 'order id:',order_id, 'dish id:',dish_id)
-    fetch(baseUrl + '/ordered_dishes/' + order_id + '/' + dish_id + '/', {
-      method: 'POST',
-      credentials: 'include',
-    })
-    .then(res => {
-      if(res.status === 200){
-        console.log('dish added to order!')
-        return res.json()
-      } else {
-        console.log('dish was not added...')
-        return []
-      }
-    })
-    .then(data => {
-      console.log(data)
-      const copyOrderedDishes = [...this.state.orderedDishes, data.data]
-      console.log(copyOrderedDishes[copyOrderedDishes.length-1])
-
-
+    if(!this.state.userLoggedIn){
+      alert('❌ You must log in first to create an order. ❌')
       this.setState({
-        currentOrderId: order_id,
-        orderedDishes: copyOrderedDishes,
-        currentOrderedDishId: copyOrderedDishes[copyOrderedDishes.length-1].id,
-        currentOrderTotal: null,
+        loginOpen: true,
       })
-      // this.updateOrderedDish(order_id, dish_id, this.state.currentOrderedDishId)
-    })
-    .then(()=>{
-      this.sumOrderedDishPrices()
-    })
+    } else {
+      fetch(baseUrl + '/ordered_dishes/' + order_id + '/' + dish_id + '/', {
+        method: 'POST',
+        credentials: 'include',
+      })
+      .then(res => {
+        if(res.status === 200){
+          console.log('dish added to order!')
+          return res.json()
+        } else {
+          console.log('dish was not added...')
+          return []
+        }
+      })
+      .then(data => {
+        console.log(data)
+        const copyOrderedDishes = [...this.state.orderedDishes, data.data]
+        console.log(copyOrderedDishes[copyOrderedDishes.length-1])
+
+
+        this.setState({
+          currentOrderId: order_id,
+          orderedDishes: copyOrderedDishes,
+          currentOrderedDishId: copyOrderedDishes[copyOrderedDishes.length-1].id,
+          currentOrderTotal: null,
+        })
+      })
+      .then(()=>{
+        this.sumOrderedDishPrices()
+      })
+    }
+
   }
+
 
 
   updateOrderedDish = (order_id, dish_id, ordered_dish_id) => {
@@ -365,10 +389,14 @@ class App extends Component {
       <Register 
         register={this.register}
         registerOpen={this.state.registerOpen}
+        toggleRegisterForm={this.toggleRegisterForm}
       />
       <Login 
         loginUser={this.loginUser}
         loginOpen={this.state.loginOpen}
+        registerOpen={this.state.registerOpen}
+        toggleRegisterForm={this.toggleRegisterForm}
+
       />
 
       <div className="bottom-container">
@@ -378,6 +406,7 @@ class App extends Component {
           addDishToOrder = {this.addDishToOrder}
         />
         <Order 
+          username={this.state.username}
           orderOpen={this.state.orderOpen}
           orderedDishes={this.state.orderedDishes}
           orderedDishQty={this.state.orderedDishQty}
