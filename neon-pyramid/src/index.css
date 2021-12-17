@@ -191,15 +191,6 @@ h5 {
   transition: width 1s, height 1s;
 }  
 
-.menu-text-appear {
-  /* menu text positioning here */
-}  
-
-.menu-item:hover .menu-text-appear {
-  visibility: visible;
-  opacity: 1;
-}  
-
 .menu-img:hover {
   width: 20%;
 }  
@@ -233,15 +224,16 @@ h5 {
 }
 
 .all-ordered-dishes {
-  max-height: 80vh;
+  max-height: 60vh;
   overflow-y: scroll;
 }
 
 .payment {
   position: fixed;
+  border-radius: 5px;
   margin-top: 4vh;
   margin-left: 5vw;
-  max-height: 93vh;
+  max-height: 90vh;
   width: 50vw;
   z-index: 2;
   box-shadow: 0 0 5px #f403c0,
@@ -253,10 +245,6 @@ h5 {
 
 .payment-header {
   display: inline;
-}
-
-.x {
-  float: right;
 }
 
 .payment-form-cont {
@@ -341,11 +329,28 @@ h5 {
 }
 
 .complete-btn {
-  margin-top: 25px;
-  padding: 20px;
+  padding: 10px;
+}
+
+.x {
+  float: right;
+}
+
+.plus {
+  float: right;
+  margin-right: 10vw;
+  margin-top: 3vh;
+  font-size: 7rem;
+  line-height: 0.9;
+  opacity: .25;
+  transition: .7s;
+}
+
+.plus:hover {
+  opacity: 1;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+  monospace;
+}  
