@@ -7,6 +7,7 @@ import Logo from './components/Logo';
 import Nav from './components/Nav';
 import Menu from './components/Menu';
 import Order from './components/Order';
+import OrderSpacer from './components/OrderSpacer';
 import Payment from './components/Payment';
 
 
@@ -27,8 +28,10 @@ class App extends Component {
       firstName: '',
       lastName: '',
       userLoggedIn: false,
+      logoOpen: true,
       registerOpen: false,
       loginOpen: false,
+      menuOpen: false,
       orderOpen: false,
       paymentOpen: false,
       orders: [],
@@ -69,8 +72,6 @@ class App extends Component {
           registerOpen: false,
           loginOpen: true,
           })
-          // this.toggleLoginForm()
-          // this.toggleRegisterForm()
       } else {
 
       }
@@ -111,6 +112,8 @@ class App extends Component {
           password: e.target.password.value,
           userLoggedIn: true,
           loginOpen: false,
+          menuOpen: true,
+          logoOpen: false,
           })
         this.newOrder()
       } else {
@@ -258,6 +261,9 @@ class App extends Component {
       alert('❌ You must log in first to create an order. ❌')
       this.setState({
         loginOpen: true,
+        logoOpen: false,
+        menuOpen: false,
+        orderOpen: false,
       })
     } else {
       fetch(baseUrl + '/ordered_dishes/' + order_id + '/' + dish_id + '/', {
@@ -293,19 +299,7 @@ class App extends Component {
 
   }
 
-  openCompenent = (component) => {
-    this.setState({
-      component: true,
-    })
-  }
-
-  closeComponent = (component) => {
-    this.setState({
-      component: false,
-    })
-  }
-
-  updateOrderedDish = (order_id, dish_id, ordered_dish_id) => {
+   updateOrderedDish = (order_id, dish_id, ordered_dish_id) => {
     console.log(`order id: ${order_id}, dish id: ${dish_id}, ordered_dish_id: ${ordered_dish_id}` )
 
     fetch(baseUrl + '/ordered_dishes/' + order_id + '/' + dish_id + '/' + ordered_dish_id, { 
@@ -352,17 +346,46 @@ class App extends Component {
     })
   }
 
+  toggleLogo = () => {
+    this.setState({
+      logoOpen: true,
+      menuOpen: false,
+      registerOpen: false,
+      loginOpen: false,
+    }, ()=>console.log('logoOpen after set state: ' + this.state.logoOpen)
+    )
+    console.log('toggleLogo clicked')
+  }
+
+  toggleMenu = () => {
+    this.setState({
+      logoOpen: false,
+      menuOpen: true,
+      registerOpen: false,
+      loginOpen: false,
+    }, ()=>console.log('logoOpen after set state: ' + this.state.logoOpen)
+    )
+    console.log('toggleLogo clicked')
+  }
+
+
   toggleRegisterForm = () => {
     this.setState({
       registerOpen: !this.state.registerOpen,
+      loginOpen: false,
+      menuOpen: false,
+      logoOpen: false,
     }, ()=>console.log('registerOpen after set state: ' + this.state.registerOpen)
     )
     console.log('toggleRegisterForm clicked')
   }
-
+  
   toggleLoginForm = () => {
     this.setState({
       loginOpen: !this.state.loginOpen,
+      menuOpen: false,
+      logoOpen: false,
+      registerOpen: false,
     }, ()=>console.log('loginOpen after set state: ' + this.state.loginOpen)
     )
     console.log('toggleLoginForm clicked')
@@ -379,6 +402,7 @@ class App extends Component {
   togglePaymentForm = () => {
     this.setState({
       paymentOpen: !this.state.paymentOpen,
+      // menuOpen: !this.state.menuOpen,
     }, ()=>console.log('paymentOpen after set state: ' + this.state.paymentOpen)
     )
     console.log('togglePaymentForm clicked')
@@ -386,6 +410,7 @@ class App extends Component {
 
   checkout = () => {
     console.log('hit checkout button!')
+    alert('Your order has been completed!')
   }
   
   componentDidMount(){
@@ -400,6 +425,7 @@ class App extends Component {
         currentOrderTotal={this.state.currentOrderTotal}
         paymentOpen={this.state.paymentOpen}
         togglePaymentForm={this.togglePaymentForm}
+        checkout={this.checkout}
        />
       <Nav 
         toggleRegisterForm={this.toggleRegisterForm}
@@ -407,21 +433,25 @@ class App extends Component {
         toggleLoginForm={this.toggleLoginForm}
         loginOpen={this.state.loginOpen}
         toggleOrderForm={this.toggleOrderForm}
+        toggleLogo={this.toggleLogo}
+        toggleMenu={this.toggleMenu}
         orderOpen={this.state.orderOpen}
         logoutUser={this.logoutUser}
         userLoggedIn={this.state.userLoggedIn}
       />
-      <Logo />
-
+      <Logo 
+        logoOpen={this.state.logoOpen}
+      />
       <Register 
         register={this.register}
         registerOpen={this.state.registerOpen}
         toggleRegisterForm={this.toggleRegisterForm}
+        toggleMenu={this.toggleMenu}
       />
       <Login 
         loginUser={this.loginUser}
         loginOpen={this.state.loginOpen}
-        registerOpen={this.state.registerOpen}
+        toggleMenu={this.toggleMenu}
         toggleRegisterForm={this.toggleRegisterForm}
 
       />
@@ -431,6 +461,7 @@ class App extends Component {
           dishes = {this.state.dishes}
           currentOrderId = {this.state.currentOrderId}
           addDishToOrder = {this.addDishToOrder}
+          menuOpen={this.state.menuOpen}
         />
         <Order 
           username={this.state.username}
@@ -443,6 +474,9 @@ class App extends Component {
           deletedOrderedDish={this.deleteOrderedDish}
           togglePaymentForm={this.togglePaymentForm}
         />
+        <OrderSpacer
+          orderOpen={this.state.orderOpen}
+        /> 
       </div>
     </div>
     );

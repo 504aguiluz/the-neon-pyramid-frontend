@@ -12,7 +12,7 @@ function Login(props) {
                 <label htmlFor='name'>username:</label>
                 <br/>
                 <input 
-                className='input'
+                className='input-register'
                 type='text' 
                 id='name' 
                 name='username' />
@@ -20,7 +20,7 @@ function Login(props) {
                 <label htmlFor='name'>password:</label>
                 <br/>
                 <input 
-                className='input'
+                className='input-register'
                 type='text' 
                 id='name' 
                 name='password' />
@@ -29,8 +29,6 @@ function Login(props) {
                 <input 
                 className='submit-btn all-btns'
                 type='submit' value='login' />
-                <br/>
-                <br/>
             </form>
             <button
                 className='open-register-btn all-btns'
@@ -38,7 +36,16 @@ function Login(props) {
                 onClick ={()=>{props.toggleRegisterForm()}}
                 >
                 register
-                </button>
+            </button>
+                <br/>
+            <button
+                className='all-btns'
+                id={props.currentOrderId}
+                onClick={()=>{props.toggleMenu()}}
+                >
+                <b>x</b>
+            </button>
+                <br/>
         </div>
                 }
         </React.Fragment>
