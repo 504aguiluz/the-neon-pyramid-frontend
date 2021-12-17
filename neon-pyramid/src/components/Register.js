@@ -6,7 +6,7 @@ function Register(props) {
         
         {props.registerOpen &&
         <div className="component register">
-            <h1>REGISTER</h1>
+            <h1>register</h1>
             <form 
             className='register-form'
             onSubmit={props.register}>
@@ -59,7 +59,7 @@ function Register(props) {
                 <br/>
                 <br/>
             <button
-                className='all-btns'
+                className='x reg-btn all-btns'
                 id={props.currentOrderId}
                 onClick={()=>{props.toggleMenu()}}
                 >

@@ -7,8 +7,8 @@ function Login(props) {
 
         {props.loginOpen && 
         <div className="component login">
-                <h1>LOGIN</h1> 
             <form onSubmit={props.loginUser}>
+                <h1>login</h1> 
                 <label htmlFor='name'>username:</label>
                 <br/>
                 <input 
@@ -39,7 +39,7 @@ function Login(props) {
             </button>
                 <br/>
             <button
-                className='all-btns'
+                className='x all-btns'
                 id={props.currentOrderId}
                 onClick={()=>{props.toggleMenu()}}
                 >

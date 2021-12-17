@@ -6,26 +6,26 @@ function Nav(props) {
             <div className="component nav">
                 <div className="nav-item">
                     {/* <b><span>___________</span></b> */}
-                    <b onClick ={()=>{props.toggleRegisterForm()}}>register<span>___________</span></b>
+                    <b onClick ={()=>{props.toggleRegisterForm()}}>register</b>
                 </div>
                 {props.userLoggedIn && 
                 <div className="nav-item">
-                    <b onClick ={()=>{props.logoutUser()}}>logout<span>___________</span></b>
+                    <b onClick ={()=>{props.logoutUser()}}>logout</b>
                         
                 </div>
                 }
                 { !props.userLoggedIn && 
                 <div className="nav-item">
-                    <b onClick ={()=>{props.toggleLoginForm()}}>login<span>___________</span></b>
+                    <b onClick ={()=>{props.toggleLoginForm()}}>login</b>
                 </div>
                 }
                 
                 <div className="nav-item">
-                    <b onClick ={()=>{props.toggleLogo()}}>info<span>___________</span></b>
+                    <b onClick ={()=>{props.toggleLogo()}}>home</b>
                 </div>
                     
                 <div className="nav-item">
-                    <b onClick ={()=>{props.toggleMenu()}}>menu<span>___________</span></b>
+                    <b onClick ={()=>{props.toggleMenu()}}>menu</b>
                 </div>
                 </div>
                 

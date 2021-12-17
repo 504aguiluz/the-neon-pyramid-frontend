@@ -38,11 +38,52 @@ body {
 }
 
 .logo {
-  /* position:sticky; */
   height: 93vh;
   width: 100vw;
   padding: 20px;
   text-align: center;
+  position: relative;
+}
+
+.logo:before {
+  opacity: 0;
+  -webkit-transition: opacity 1.2s ease;
+  -moz-transition: opacity 1.2s ease;
+  -ms-transition: opacity 1.2s ease;
+  -o-transition: opacity 1.2s ease;
+  transition:  opacity 1.2s ease-out;
+  content: "";
+  background-image: url('https://i.imgur.com/sByctoQ.jpg');
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.logo:hover:before {
+  opacity: 0.75;
+  z-index: 0;
+}
+
+.logo-title {
+  position: relative;
+  color: #ffffff;  
+  font-size: 10rem;
+  line-height: 0.9;
+  text-align: center;
+}
+
+.logo-subtext {
+  position: absolute;
+  bottom: 0;
+  margin-left: 30vw;
+  margin-bottom: 5vh;
+}
+
+h5 {
+  margin-bottom: 20vh;
 }
 
 .nav {
@@ -52,7 +93,7 @@ body {
   margin: auto;
   height: 7vh;
   min-width: 100vw;
-
+  z-index: 1;
 }
 
 .nav-item {
@@ -63,22 +104,33 @@ body {
   display: flex;
 }
 
-.register-form {
-  /* display: grid; */
-  /* grid-template-columns: 1fr 0fr 0fr 1fr 0fr 0fr 1fr 4fr; */ 
-}  
+.register{
+    margin-top: 10vh;
+    margin-left: 30vw;
+    max-height: 93vh;
+    width: 40vw;
+    box-shadow: 0 0 5px #f403c0,
+    0 0 5px #f403c0,
+    0 0 10px #f403c0,
+    0 0 40px #f403c0;
+    text-align: center;
+  }
+
+.reg-btn{
+  margin-bottom: 10vh;
+  background-color: white;
+}
 
 .login {
-  position: fixed;
-  margin-top: 4vh;
-  margin-left: 5vw;
+  margin-top: 10vh;
+  margin-left: 30vw;
   max-height: 93vh;
-  width: 50vw;
+  width: 40vw;
   box-shadow: 0 0 5px #f403c0,
   0 0 5px #f403c0,
   0 0 10px #f403c0,
   0 0 40px #f403c0;
-  -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+  text-align: center;
 }
 
 .menu {
