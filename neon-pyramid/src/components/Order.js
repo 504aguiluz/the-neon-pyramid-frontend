@@ -11,14 +11,15 @@ function Order(props) {
             
             <div>
                 <h1>ORDER:</h1>
-                <p>{props.currentOrderId}</p>
-                <p>{props.username}</p>
-                <em>total: €¥ {props.currentOrderTotal}</em>
+                <small><em>#{props.currentOrderId}</em></small>
+                <br/>
+                <small><em>customer: {props.username}</em></small>
+                <br/>
+                <small><em>total: €¥ {props.currentOrderTotal}</em></small>
             </div>
             <br/>
-            <br/>
             <div className='all-ordered-dishes'>
-            <h4>apps</h4>
+            <h4 className='dish-type'>apps</h4>
                 {props.orderedDishes.map((orderedDish, i) => {
                     if(orderedDish.dish.category === 'app') {
                         return(
@@ -40,7 +41,7 @@ function Order(props) {
                 )}
                 <br/>
                 <br/>
-            <h4>entrées</h4>
+            <h4 className='dish-type'>entrées</h4>
                 {props.orderedDishes.map((orderedDish, i) => {
                     if(orderedDish.dish.category === 'entree') {
                         return(
@@ -62,7 +63,7 @@ function Order(props) {
                 )}
                 <br/>
                 <br/>
-            <h4>desserts</h4>
+            <h4 className='dish-type'>desserts</h4>
                 {props.orderedDishes.map((orderedDish, i) => {
                     if(orderedDish.dish.category === 'dessert') {
                         return(
@@ -84,7 +85,7 @@ function Order(props) {
                 )}
                 <br/>
                 <br/>
-            <h4>drinks</h4>
+            <h4 className='dish-type'>drinks</h4>
                 {props.orderedDishes.map((orderedDish, i) => {
                     if(orderedDish.dish.category === 'bev') {
                         return(
@@ -111,7 +112,7 @@ function Order(props) {
                 <button
                 className='checkout-btn all-btns'
                 id={props.currentOrderId}
-                onClick={()=>{props.checkout()}}
+                onClick={()=>{props.togglePaymentForm()}}
                 >
                 CHECKOUT
                 </button>

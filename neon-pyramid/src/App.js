@@ -1,13 +1,13 @@
 import './App.css';
 import React, { Component } from 'react';
-import { Alert } from 'react-alert';
+// import { Alert } from 'react-alert';
 import Register from './components/Register';
 import Login from './components/Login';
 import Logo from './components/Logo';
 import Nav from './components/Nav';
 import Menu from './components/Menu';
 import Order from './components/Order';
-// import Payment from './components/Payment';
+import Payment from './components/Payment';
 
 
 let baseUrl = process.env.REACT_APP_BASEURL
@@ -21,7 +21,11 @@ class App extends Component {
       email: '',
       phone_num: '',
       address: '',
-      payment_info: {},
+      cc_num: '',
+      cc_exp:  '',
+      cc_sec_code: '',
+      firstName: '',
+      lastName: '',
       userLoggedIn: false,
       registerOpen: false,
       loginOpen: false,
@@ -289,7 +293,17 @@ class App extends Component {
 
   }
 
+  openCompenent = (component) => {
+    this.setState({
+      component: true,
+    })
+  }
 
+  closeComponent = (component) => {
+    this.setState({
+      component: false,
+    })
+  }
 
   updateOrderedDish = (order_id, dish_id, ordered_dish_id) => {
     console.log(`order id: ${order_id}, dish id: ${dish_id}, ordered_dish_id: ${ordered_dish_id}` )
@@ -361,11 +375,19 @@ class App extends Component {
     )
     console.log('toggleOrderForm clicked')
   }
+  
+  togglePaymentForm = () => {
+    this.setState({
+      paymentOpen: !this.state.paymentOpen,
+    }, ()=>console.log('paymentOpen after set state: ' + this.state.paymentOpen)
+    )
+    console.log('togglePaymentForm clicked')
+  }
 
   checkout = () => {
     console.log('hit checkout button!')
   }
-
+  
   componentDidMount(){
     this.getDishes()
   }
@@ -374,6 +396,11 @@ class App extends Component {
     
     return (
       <div className="App">
+      <Payment
+        currentOrderTotal={this.state.currentOrderTotal}
+        paymentOpen={this.state.paymentOpen}
+        togglePaymentForm={this.togglePaymentForm}
+       />
       <Nav 
         toggleRegisterForm={this.toggleRegisterForm}
         registerOpen={this.state.registerOpen}
@@ -414,12 +441,9 @@ class App extends Component {
           orders={this.state.orders}
           currentOrderTotal={this.state.currentOrderTotal}
           deletedOrderedDish={this.deleteOrderedDish}
-          checkout={this.checkout}
+          togglePaymentForm={this.togglePaymentForm}
         />
       </div>
-        {/* {this.paymentOpen &&  */}
-        {/* <Payment /> */}
-        {/* } */}
     </div>
     );
   }
