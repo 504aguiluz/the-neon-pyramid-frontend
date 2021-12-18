@@ -358,6 +358,9 @@ class App extends Component {
   }
 
   toggleMenu = () => {
+    if(this.state.dishes === []){
+      this.getDishes()
+    }
     this.setState({
       logoOpen: false,
       menuOpen: true,
