@@ -1,6 +1,5 @@
 import './App.css';
 import React, { Component } from 'react';
-// import { Alert } from 'react-alert';
 import Register from './components/Register';
 import Login from './components/Login';
 import Logo from './components/Logo';
@@ -166,7 +165,6 @@ class App extends Component {
       this.setState({
         dishes: data.data
       })
-      // console.log('new data: ' + JSON.stringify(data.data))
     })
   }
 
@@ -233,11 +231,9 @@ class App extends Component {
   }
 
   sumOrderedDishPrices = () => {
-    
   const dishes = this.state.orderedDishes
   const total = dishes.reduce((total, obj) => obj.dish.price + total, 0)
   console.log(total)
-
   this.setState({
     currentOrderTotal: total,
   })
@@ -424,64 +420,64 @@ class App extends Component {
     
     return (
       <div className="App">
-      <Payment
-        currentOrderTotal={this.state.currentOrderTotal}
-        paymentOpen={this.state.paymentOpen}
-        togglePaymentForm={this.togglePaymentForm}
-        checkout={this.checkout}
-       />
-      <Nav 
-        toggleRegisterForm={this.toggleRegisterForm}
-        registerOpen={this.state.registerOpen}
-        toggleLoginForm={this.toggleLoginForm}
-        loginOpen={this.state.loginOpen}
-        toggleOrderForm={this.toggleOrderForm}
-        toggleLogo={this.toggleLogo}
-        toggleMenu={this.toggleMenu}
-        orderOpen={this.state.orderOpen}
-        logoutUser={this.logoutUser}
-        userLoggedIn={this.state.userLoggedIn}
-      />
-      <Logo 
-        logoOpen={this.state.logoOpen}
-      />
-      <Register 
-        register={this.register}
-        registerOpen={this.state.registerOpen}
-        toggleRegisterForm={this.toggleRegisterForm}
-        toggleMenu={this.toggleMenu}
-      />
-      <Login 
-        loginUser={this.loginUser}
-        loginOpen={this.state.loginOpen}
-        toggleMenu={this.toggleMenu}
-        toggleRegisterForm={this.toggleRegisterForm}
-
-      />
-
-      <div className="bottom-container">
-        <Menu 
-          dishes = {this.state.dishes}
-          currentOrderId = {this.state.currentOrderId}
-          addDishToOrder = {this.addDishToOrder}
-          menuOpen={this.state.menuOpen}
-        />
-        <Order 
-          username={this.state.username}
-          orderOpen={this.state.orderOpen}
-          orderedDishes={this.state.orderedDishes}
-          orderedDishQty={this.state.orderedDishQty}
-          currentOrderId={this.state.currentOrderId}
-          orders={this.state.orders}
+        <Payment
           currentOrderTotal={this.state.currentOrderTotal}
-          deletedOrderedDish={this.deleteOrderedDish}
+          paymentOpen={this.state.paymentOpen}
           togglePaymentForm={this.togglePaymentForm}
+          checkout={this.checkout}
         />
-        <OrderSpacer
+        <Nav 
+          toggleRegisterForm={this.toggleRegisterForm}
+          registerOpen={this.state.registerOpen}
+          toggleLoginForm={this.toggleLoginForm}
+          loginOpen={this.state.loginOpen}
+          toggleOrderForm={this.toggleOrderForm}
+          toggleLogo={this.toggleLogo}
+          toggleMenu={this.toggleMenu}
           orderOpen={this.state.orderOpen}
-        /> 
+          logoutUser={this.logoutUser}
+          userLoggedIn={this.state.userLoggedIn}
+        />
+        <Logo 
+          logoOpen={this.state.logoOpen}
+        />
+        <Register 
+          register={this.register}
+          registerOpen={this.state.registerOpen}
+          toggleRegisterForm={this.toggleRegisterForm}
+          toggleMenu={this.toggleMenu}
+        />
+        <Login 
+          loginUser={this.loginUser}
+          loginOpen={this.state.loginOpen}
+          toggleMenu={this.toggleMenu}
+          toggleRegisterForm={this.toggleRegisterForm}
+
+        />
+
+        <div className="bottom-container">
+          <Menu 
+            dishes = {this.state.dishes}
+            currentOrderId = {this.state.currentOrderId}
+            addDishToOrder = {this.addDishToOrder}
+            menuOpen={this.state.menuOpen}
+          />
+          <Order 
+            username={this.state.username}
+            orderOpen={this.state.orderOpen}
+            orderedDishes={this.state.orderedDishes}
+            orderedDishQty={this.state.orderedDishQty}
+            currentOrderId={this.state.currentOrderId}
+            orders={this.state.orders}
+            currentOrderTotal={this.state.currentOrderTotal}
+            deletedOrderedDish={this.deleteOrderedDish}
+            togglePaymentForm={this.togglePaymentForm}
+          />
+          <OrderSpacer
+            orderOpen={this.state.orderOpen}
+          /> 
+        </div>
       </div>
-    </div>
     );
   }
 }
