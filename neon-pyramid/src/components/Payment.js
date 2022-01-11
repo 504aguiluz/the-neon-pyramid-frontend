@@ -23,31 +23,22 @@ function Payment(props) {
                         <input
                             name="firstName" placeholder='first name' 
                             className='input first-name-input'
-                            // onChange={this.handleChange}
                         />
-                        {/* <label>last name</label> */}
                         <input
                             name="lastName" placeholder='last name' 
                             className='input last-name-input'
-                            // onChange={this.handleChange}
                         />
-                        {/* <label>cc number</label> */}
                         <input
                             name="cc_num" placeholder='xxxx-xxxx-xxxx-xxxx' 
                             className='input cc-num-input'
-                            // onChange={this.handleChange}
                         />
-                        {/* <label>exp date</label> */}
                         <input
                             name="cc_exp" placeholder='mm/yy' 
                             className='input exp-date-input'
-                            // onChange={this.handleChange}
                         />
-                        {/* <label>sec code</label> */}
                         <input
                             name="cc_sec_code" placeholder='xxxx' 
                             className='input cc-sec-code-input'
-                            // onChange={this.handleChange}
                         />
                         <p>total: €¥<b>{props.currentOrderTotal}</b></p>
                         <button

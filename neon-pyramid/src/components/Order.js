@@ -1,8 +1,6 @@
 import React from 'react';
 
 function Order(props) {
-    console.log(`props: ${JSON.stringify(props.orders[props.currentOrderId-1])}`)
-    console.log(`current_order_id: ${props.currentOrderId}`)
     return (
         <React.Fragment>
         {props.orderOpen &&

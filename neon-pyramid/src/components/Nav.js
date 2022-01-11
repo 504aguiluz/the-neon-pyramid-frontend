@@ -5,7 +5,6 @@ function Nav(props) {
         <React.Fragment>
             <div className="component nav">
                 <div className="nav-item">
-                    {/* <b><span>___________</span></b> */}
                     <b onClick ={()=>{props.toggleRegisterForm()}}>register</b>
                 </div>
                 {props.userLoggedIn && 
@@ -18,8 +17,7 @@ function Nav(props) {
                 <div className="nav-item">
                     <b onClick ={()=>{props.toggleLoginForm()}}>login</b>
                 </div>
-                }
-                
+                } 
                 <div className="nav-item">
                     <b onClick ={()=>{props.toggleLogo()}}>home</b>
                 </div>

@@ -97,16 +97,11 @@ class App extends Component {
         },
         credentials: 'include'
       })
-      
-      console.log(response)
-      console.log('BODY: ', response.body)
-      
       if(response.status === 200){
         this.getOrders()
         this.getDishes()
         console.log('🥳 login successful! 🥳')
         this.setState({
-          // need to populate the rest of state for users
           username: e.target.username.value,
           password: e.target.password.value,
           userLoggedIn: true,
@@ -128,7 +123,6 @@ class App extends Component {
   }
 
   logoutUser = () => {
-    console.log('hit logout button')
     fetch(baseUrl + '/users/logout', {
       method: 'GET',
       headers: {
@@ -144,7 +138,6 @@ class App extends Component {
         orderOpen: false,
       })
     })
-    console.log(this.state)
   }
 
   getDishes = () => {
@@ -169,7 +162,6 @@ class App extends Component {
   }
 
   getOrders = () => {
-    console.log('hit getOrders')
     fetch(baseUrl + '/orders/', {
       credentials: 'include'
     })
@@ -191,8 +183,6 @@ class App extends Component {
   }
 
   newOrder = async () => {
-    console.log('hit newOrder')
-
     try{
       const response = await fetch(baseUrl + '/orders/', {
         method: 'POST',
@@ -204,13 +194,8 @@ class App extends Component {
         }, 
         credentials: 'include'
       })
-      
-      console.log(response.status)
-
       if(response.status === 201){
-        console.log('new order created!')
         const newOrder = await response.json()
-        console.log('new order :' + newOrder)
         this.getOrders()
         const copyOrders = [...this.state.orders]
         copyOrders.push(newOrder)
@@ -219,21 +204,17 @@ class App extends Component {
           currentOrderId: newOrder.data.id,
           orderOpen: true,
         })
-        console.log('newOrder: ' + JSON.stringify(newOrder))
-        console.log('newOrderID: ' + JSON.stringify(newOrder.data.id))
       }
     }
     catch(err){
       console.log('Error -> ', err)
       console.log('order not created...')
     }
-    
   }
 
   sumOrderedDishPrices = () => {
   const dishes = this.state.orderedDishes
   const total = dishes.reduce((total, obj) => obj.dish.price + total, 0)
-  console.log(total)
   this.setState({
     currentOrderTotal: total,
   })
@@ -242,7 +223,6 @@ class App extends Component {
   subOrderedDishPrices = (id) => {
     const findIndex = this.state.orderedDishes.findIndex(orderedDish => orderedDish.id === id)
     const orderedDish = this.state.orderedDishes[findIndex]
-    console.log(`orderedDish.dish.price: ${JSON.stringify(orderedDish.dish.price)}`)
     const currentTotal = this.state.currentOrderTotal
     const newTotal = currentTotal - orderedDish.dish.price
     this.setState({
@@ -252,7 +232,6 @@ class App extends Component {
   }
 
   addDishToOrder =(order_id, dish_id)=> {
-    console.log( 'order id:',order_id, 'dish id:',dish_id)
     if(!this.state.userLoggedIn){
       alert('❌ You must log in first to create an order. ❌')
       this.setState({
@@ -276,11 +255,7 @@ class App extends Component {
         }
       })
       .then(data => {
-        console.log(data)
         const copyOrderedDishes = [...this.state.orderedDishes, data.data]
-        console.log(copyOrderedDishes[copyOrderedDishes.length-1])
-
-
         this.setState({
           currentOrderId: order_id,
           orderedDishes: copyOrderedDishes,
@@ -296,13 +271,10 @@ class App extends Component {
   }
 
    updateOrderedDish = (order_id, dish_id, ordered_dish_id) => {
-    console.log(`order id: ${order_id}, dish id: ${dish_id}, ordered_dish_id: ${ordered_dish_id}` )
-
     fetch(baseUrl + '/ordered_dishes/' + order_id + '/' + dish_id + '/' + ordered_dish_id, { 
       method: 'PUT',
       credentials: 'include'
     })
-
     .then(res => {
       if(res.status === 200){
         console.log('ordered dish updated!')
@@ -312,7 +284,6 @@ class App extends Component {
         return []
       }
     })
-
     .then(data => {
       const updatedOrderedDish = data.data
       console.log(updatedOrderedDish)
@@ -350,7 +321,6 @@ class App extends Component {
       loginOpen: false,
     }, ()=>console.log('logoOpen after set state: ' + this.state.logoOpen)
     )
-    console.log('toggleLogo clicked')
   }
 
   toggleMenu = () => {
@@ -376,7 +346,6 @@ class App extends Component {
       logoOpen: false,
     }, ()=>console.log('registerOpen after set state: ' + this.state.registerOpen)
     )
-    console.log('toggleRegisterForm clicked')
   }
   
   toggleLoginForm = () => {
@@ -387,7 +356,6 @@ class App extends Component {
       registerOpen: false,
     }, ()=>console.log('loginOpen after set state: ' + this.state.loginOpen)
     )
-    console.log('toggleLoginForm clicked')
   }
   
   toggleOrderForm = () => {
@@ -395,21 +363,18 @@ class App extends Component {
       orderOpen: !this.state.orderOpen,
     }, ()=>console.log('orderOpen after set state: ' + this.state.orderOpen)
     )
-    console.log('toggleOrderForm clicked')
   }
   
   togglePaymentForm = () => {
     this.setState({
       paymentOpen: !this.state.paymentOpen,
-      // menuOpen: !this.state.menuOpen,
     }, ()=>console.log('paymentOpen after set state: ' + this.state.paymentOpen)
     )
-    console.log('togglePaymentForm clicked')
   }
 
   checkout = () => {
-    console.log('hit checkout button!')
     alert('Your order has been completed!')
+    // square api call needs to be ported here
   }
   
   componentDidMount(){

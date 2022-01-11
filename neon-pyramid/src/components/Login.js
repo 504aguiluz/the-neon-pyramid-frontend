@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Login(props) {
-    console.log('before return loginOpen: ' + props.loginOpen)
     return (
         <React.Fragment>
 
