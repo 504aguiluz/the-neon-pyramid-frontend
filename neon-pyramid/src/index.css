@@ -41,7 +41,6 @@ body {
   height: 93vh;
   width: 100vw;
   padding: 20px;
-  text-align: center;
   position: relative;
 }
 
@@ -55,6 +54,7 @@ body {
   content: "";
   background-image: url('https://i.imgur.com/sByctoQ.jpg');
   background-size: cover;
+  background-position: center;
   position: absolute;
   top: 0px;
   right: 0px;
@@ -70,20 +70,16 @@ body {
 .logo-title {
   position: relative;
   color: #ffffff;  
-  font-size: 10rem;
+  font-size: 10vw;
   line-height: 0.9;
   text-align: center;
 }
 
 .logo-subtext {
-  position: absolute;
+  position: relative;
+  text-align: center;
   bottom: 0;
-  margin-left: 30vw;
-  margin-bottom: 5vh;
-}
-
-h5 {
-  margin-bottom: 20vh;
+  padding-top: 25vh;
 }
 
 .nav {
@@ -150,9 +146,9 @@ h5 {
   z-index: 1;
   padding-bottom: 25px;
   box-shadow: 0 0 5px #f403c0,
-  0 0 50px #f403c0,
   0 0 10px #f403c0,
-  0 0 40px #f403c0;
+  0 0 10px #f403c0,
+  0 0 10px #f403c0;
 }
 
 .menu-spacer {
@@ -214,9 +210,9 @@ h5 {
   z-index: 1;
   padding-bottom: 25px;
   box-shadow: 0 0 5px #f403c0,
-  0 0 50px #f403c0,
   0 0 10px #f403c0,
-  0 0 40px #f403c0;
+  0 0 10px #f403c0,
+  0 0 10px #f403c0;
 }
 
 .order-spacer {
